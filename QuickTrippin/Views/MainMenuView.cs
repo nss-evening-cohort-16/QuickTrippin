@@ -6,18 +6,14 @@ namespace QuickTrippin.Views
     {
         public MainMenuView(AppView appView) : base(appView, "Main Menu")
         {
-            _errorMessage = "";
             _menuChoice = (int)MainMenuOption.MainMenu;
         }
 
-        private string _errorMessage;
         private int _menuChoice;
 
         public string MenuGraphic
         {
             get => @$"
-{CreateViewHeader()}
-
 1. Enter District Sales
 2. Generate District Report
 3. Add New Employee
@@ -25,33 +21,51 @@ namespace QuickTrippin.Views
 5. Add District
 6. Exit
 
-{_errorMessage}
-Choose an option (1,2,3...): ";
+{ErrorMsg}";
         }
 
-        public void Show()
+        private void DisplayMenu()
         {
-            Console.Clear();
-            Console.Write(MenuGraphic);
-            PromptForMenuChoice();
+            Console.WriteLine(MenuGraphic);
         }
-
         private void PromptForMenuChoice()
         {
+            Console.Write("Choose an option(1, 2, 3...): ");
             var input = Console.ReadKey().KeyChar.ToString();
 
-            _errorMessage = ValidMenuChoice(input) ? "" : "Invalid Menu Option....";
-            AppView.ShowView((MainMenuOption)_menuChoice);
+            if (ValidMenuInput(input))
+            {
+                AppView.ShowView((MainMenuOption)_menuChoice);
+            }
+            else
+            {
+                Load();
+            }
         }
-
-        private bool ValidMenuChoice(string input)
+        public void Load()
         {
+            DisplayHeader();
+            DisplayMenu();
+            PromptForMenuChoice();
+        }
+        private bool ValidMenuInput(string input)
+        {
+            ErrorMsg = String.Empty;
+
             //must be an int
-            if (!int.TryParse(input, out _menuChoice)) { return false; }
+            if (!int.TryParse(input, out _menuChoice))
+            {
+                ErrorMsg = "Please enter a number. ";
+                return false;
+            }
 
             //must be a number from 1 to highestMenuOption
             int highestMenuOption = Enum.GetValues(typeof(MainMenuOption)).GetUpperBound(0);
-            if (_menuChoice < 1 || _menuChoice > highestMenuOption) { return false; }
+            if (_menuChoice < 1 || _menuChoice > highestMenuOption)
+            {
+                ErrorMsg = $"Please enter a number from 1 to {highestMenuOption}.";
+                return false;
+            }
 
             return true;
         }

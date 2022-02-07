@@ -9,7 +9,7 @@ namespace QuickTrippin.Data
 {
     public static class DataManager
     {
-        private static DistrictRepository _districtRepository;
+        private static DistrictRepository _districtRepository = new DistrictRepository();
 
         public static DistrictRepository Districts
         {

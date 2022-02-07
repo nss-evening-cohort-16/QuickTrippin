@@ -50,7 +50,7 @@ Enter sales for District #";
                 if (ValidDistrictId()) { PromptForDistrictSales(); }
             }
         }
-        public void Show()
+        public void Load()
         {
             DetermineDistrict();
         }

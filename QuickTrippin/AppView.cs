@@ -9,11 +9,7 @@ namespace QuickTrippin
     /// </summary>
     public class AppView
     {
-        
-
-        
-        
-        private void DisplayAnimatedMessage(List<string> textPieces, int animationTimeout = 100)
+        public void DisplayAnimatedMessage(List<string> textPieces, int animationTimeout = 300)
         {
             textPieces.ForEach(piece =>
             {
@@ -61,7 +57,7 @@ namespace QuickTrippin
 
             DisplayAnimatedMessage(textPieces);
         }
-        public void HandleException(string exceptionMessage)
+        private void HandleException(string exceptionMessage)
         {
             var textPieces = new List<string>()
                 {
@@ -79,6 +75,21 @@ namespace QuickTrippin
             Console.ReadLine();
             ShowView(MainMenuOption.MainMenu);
         }
+        public void ReturnToMainMenu()
+        {
+            var messagePieces = new List<string>()
+            {
+                Environment.NewLine,
+                "Returning to main menu",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+            };
+            DisplayAnimatedMessage(messagePieces);
+            ShowView(MainMenuOption.MainMenu);
+        }
         public void ShowView(MainMenuOption option)
         {
             try
@@ -87,7 +98,7 @@ namespace QuickTrippin
                 {
                     case MainMenuOption.MainMenu:
                         var menu = new MainMenuView(this);
-                        menu.Show();
+                        menu.Load();
                         break;
 
                     case MainMenuOption.EnterDistrictSales:
@@ -108,7 +119,7 @@ namespace QuickTrippin
 
                     case MainMenuOption.AddDistrict:
                         var addDistrictView = new AddDistrictView(this);
-                        addDistrictView.Show();
+                        addDistrictView.Load();
                         break;
 
                     case MainMenuOption.Exit:
@@ -117,7 +128,7 @@ namespace QuickTrippin
 
                     default:
                         var defaultView = new MainMenuView(this);
-                        defaultView.Show();
+                        defaultView.Load();
                         break;
                 }
             }

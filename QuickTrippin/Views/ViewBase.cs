@@ -13,17 +13,18 @@ namespace QuickTrippin.Views
         {
             AppView = appView;
             _headerText = headerText;
-            _mainBanner = @"
-**********************************
-|  QuickTrip Management Systems  |
-**********************************";
         }
 
         private readonly string _headerText;
-        private readonly string _mainBanner;
+        private readonly string _mainBanner = @"
+**********************************
+|  QuickTrip Management Systems  |
+**********************************";
 
         public AppView AppView { get; }
-        public string CreateViewHeader()
+        public string ErrorMsg { get; set; } = String.Empty;
+
+        private string CreateViewHeader()
         {
             int bannerWidth = _mainBanner.Split(Environment.NewLine)[1].Length;
             int titlePadding = ((bannerWidth - _headerText.Length) / 2) + _headerText.Length;
@@ -32,6 +33,11 @@ namespace QuickTrippin.Views
 {_headerText.PadLeft(titlePadding)}
 ";
             return retVal;
+        }
+        public void DisplayHeader()
+        {
+            Console.Clear();
+            Console.WriteLine(CreateViewHeader());
         }
     }
 }
