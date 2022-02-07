@@ -16,7 +16,7 @@ namespace QuickTrippin.Data
 
         private DistrictRepository _districtRepository;
 
-        public DistrictRepository DistrictRepository
+        public DistrictRepository Districts
         {
             get => _districtRepository;
         }
