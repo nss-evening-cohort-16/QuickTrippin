@@ -9,14 +9,11 @@ namespace QuickTrippin
     /// </summary>
     public class AppView
     {
-        public AppView()
-        {
-            _data = new DataManager();
-        }
+        
 
-        private DataManager _data;
-
-        private void CreateAnimatedMessage(List<string> textPieces, int animationTimeout = 100)
+        
+        
+        private void DisplayAnimatedMessage(List<string> textPieces, int animationTimeout = 100)
         {
             textPieces.ForEach(piece =>
             {
@@ -40,7 +37,7 @@ namespace QuickTrippin
                 ".",
             };
 
-            CreateAnimatedMessage(textPieces, 300);
+            DisplayAnimatedMessage(textPieces, 300);
             ShowView(MainMenuOption.MainMenu);
 
         }
@@ -62,7 +59,7 @@ namespace QuickTrippin
                 Environment.NewLine
             };
 
-            CreateAnimatedMessage(textPieces);
+            DisplayAnimatedMessage(textPieces);
         }
         public void HandleException(string exceptionMessage)
         {
@@ -78,7 +75,7 @@ namespace QuickTrippin
                     Environment.NewLine,
                     "Press enter to return to main menu..."
                 };
-            CreateAnimatedMessage(textPieces, 300);
+            DisplayAnimatedMessage(textPieces, 300);
             Console.ReadLine();
             ShowView(MainMenuOption.MainMenu);
         }

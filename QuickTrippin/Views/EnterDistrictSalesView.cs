@@ -6,7 +6,7 @@ namespace QuickTrippin.Views
     public class EnterDistrictSalesView : ViewBase
     {
         public EnterDistrictSalesView(AppView appView,
-            DistrictRepository districtRepo) : base(appView)
+            DistrictRepository districtRepo) : base(appView, "Enter District Sales")
         {
             _districtRepo = districtRepo;
         }

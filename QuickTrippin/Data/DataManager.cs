@@ -7,16 +7,11 @@ using QuickTrippin.Data.Repositories;
 
 namespace QuickTrippin.Data
 {
-    public class DataManager
+    public static class DataManager
     {
-        public DataManager()
-        {
-            _districtRepository = new DistrictRepository();
-        }
+        private static DistrictRepository _districtRepository;
 
-        private DistrictRepository _districtRepository;
-
-        public DistrictRepository Districts
+        public static DistrictRepository Districts
         {
             get => _districtRepository;
         }

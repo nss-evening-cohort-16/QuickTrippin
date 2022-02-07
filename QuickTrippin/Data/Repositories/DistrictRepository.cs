@@ -2,11 +2,13 @@
 
 namespace QuickTrippin.Data.Repositories
 {
-    /// <summary>
-    /// A class to handle Create and Read methods for District data
-    /// </summary>
     public class DistrictRepository
     {
+        public DistrictRepository()
+        {
+            _districts = new List<District>();
+        }
+
         private List<District> _districts;
 
         public List<District> GetAll() => _districts;

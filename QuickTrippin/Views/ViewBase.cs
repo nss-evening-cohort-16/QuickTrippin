@@ -9,11 +9,29 @@ namespace QuickTrippin.Views
 {
     public class ViewBase
     {
-        public ViewBase(AppView appView)
+        public ViewBase(AppView appView, string headerText)
         {
             AppView = appView;
+            _headerText = headerText;
+            _mainBanner = @"
+**********************************
+|  QuickTrip Management Systems  |
+**********************************";
         }
 
+        private readonly string _headerText;
+        private readonly string _mainBanner;
+
         public AppView AppView { get; }
+        public string CreateViewHeader()
+        {
+            int bannerWidth = _mainBanner.Split(Environment.NewLine)[1].Length;
+            int titlePadding = ((bannerWidth - _headerText.Length) / 2) + _headerText.Length;
+
+            string retVal = $@"{_mainBanner}
+{_headerText.PadLeft(titlePadding)}
+";
+            return retVal;
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace QuickTrippin.Views
 {
     public class MainMenuView : ViewBase
     {
-        public MainMenuView(AppView appView) : base(appView)
+        public MainMenuView(AppView appView) : base(appView, "Main Menu")
         {
             _errorMessage = "";
             _menuChoice = (int)MainMenuOption.MainMenu;
@@ -16,11 +16,7 @@ namespace QuickTrippin.Views
         public string MenuGraphic
         {
             get => @$"
-
-**********************************
-|  QuickTrip Management Systems  |
-**********************************
-
+{CreateViewHeader()}
 
 1. Enter District Sales
 2. Generate District Report
